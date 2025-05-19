@@ -17,6 +17,642 @@
           <p><a href="#list">My List</a></p>
         </div>
 </div>
+
+# Simple Calculator Program
+
+def simple_calculator():
+    a = float(input("Enter first number: "))
+    b = float(input("Enter second number: "))
+    op = input("Enter operation (+, -, *, /): ")
+    if op == '+': print(a + b)
+    elif op == '-': print(a - b)
+    elif op == '*': print(a * b)
+    elif op == '/': print(a / b)
+    else: print("Invalid operator")
+
+# Scientific Calculator (example using math module)
+import math
+
+def scientific_calculator():
+    a = float(input("Enter number: "))
+    op = input("Enter operation (sqrt, log, exp): ")
+    if op == 'sqrt': print(math.sqrt(a))
+    elif op == 'log': print(math.log(a))
+    elif op == 'exp': print(math.exp(a))
+    else: print("Unsupported operation")
+
+# Odd numbers from 1 to 99
+print("Odd numbers from 1 to 99:")
+for i in range(1, 100, 2):
+    print(i)
+
+# Check even number
+num = int(input("Enter a number: "))
+print(1 if num % 2 == 0 else 0)
+
+# Numbers divisible by 3, 5, both
+div3 = [x for x in range(1, 101) if x % 3 == 0]
+div5 = [x for x in range(1, 101) if x % 5 == 0]
+div3and5 = [x for x in range(1, 101) if x % 3 == 0 and x % 5 == 0]
+print("Div by 3:", div3)
+print("Div by 5:", div5)
+print("Div by both:", div3and5)
+
+# Same rightmost digit
+def same_rightmost_digit():
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    c = int(input("Enter third number: "))
+    print(len({a%10, b%10, c%10}) < 3)
+
+# Seconds to HH:MM:SS
+seconds = int(input("Enter seconds: "))
+h = seconds // 3600
+m = (seconds % 3600) // 60
+s = seconds % 60
+print(f"{h:02}:{m:02}:{s:02}")
+
+# Leap years 2000 to 2100
+print("Leap years between 2000 and 2100:")
+for year in range(2000, 2101):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        print(year)
+
+# Calendar for a month
+import calendar
+
+def print_calendar():
+    days = int(input("Enter number of days in the month: "))
+    start_day = input("Enter starting day of the month (e.g., Monday): ")
+    days_list = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    start_index = days_list.index(start_day)
+    print("Mon Tue Wed Thu Fri Sat Sun")
+    print("    " * start_index, end="")
+    for i in range(1, days + 1):
+        print(f"{i:>3} ", end="")
+        if (i + start_index) % 7 == 0:
+            print()
+    print()
+
+# Day of a date given first day
+import datetime
+
+def day_of_date():
+    date_input = input("Enter date (dd/mm/yyyy): ")
+    first_day = input("Enter the weekday of the 1st of the month (e.g., Monday): ")
+    d, m, y = map(int, date_input.split("/"))
+    first_day_index = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].index(first_day)
+    target_day = (first_day_index + d - 1) % 7
+    print(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][target_day])
+
+# Factorial using recursion
+def factorial_rec(n):
+    return 1 if n == 0 else n * factorial_rec(n-1)
+
+n = int(input("Enter a number to find factorial (recursion): "))
+print(factorial_rec(n))
+
+# Factorial using loop
+def factorial_loop():
+    n = int(input("Enter a number to find factorial (loop): "))
+    result = 1
+    for i in range(2, n+1):
+        result *= i
+    print(result)
+
+# Fibonacci series
+n = int(input("Enter Fibonacci terms: "))
+a, b = 1, 1
+for _ in range(n):
+    print(a, end=", ")
+    a, b = b, a + b
+print()
+
+# Armstrong number
+def is_armstrong():
+    n = int(input("Enter number: "))
+    power = len(str(n))
+    print(sum(int(d)**power for d in str(n)) == n)
+
+# Perfect square
+def is_perfect_square():
+    n = int(input("Enter number: "))
+    print(math.isqrt(n)**2 == n)
+
+# Prime number
+def is_prime():
+    n = int(input("Enter number: "))
+    if n <= 1:
+        print(False)
+        return
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            print(False)
+            return
+    print(True)
+
+# Reverse a string
+s = input("Enter string: ")
+print(s[::-1])
+
+# Reverse a number
+n = int(input("Enter number: "))
+print(int(str(n)[::-1]))
+
+# Palindrome number/string
+def is_palindrome():
+    x = input("Enter string or number: ")
+    print(x == x[::-1])
+
+# Duplicate characters in string
+def find_duplicates():
+    from collections import Counter
+    s = input("Enter string: ")
+    print({k: v for k, v in Counter(s).items() if v > 1})
+
+# Permutation and Combination
+import math
+
+def permutation():
+    n = int(input("Enter n: "))
+    r = int(input("Enter r: "))
+    print("Permutation:", math.perm(n, r))
+
+def combination():
+    n = int(input("Enter n: "))
+    r = int(input("Enter r: "))
+    print("Combination:", math.comb(n, r))
+
+# Max number from digits
+n = input("Enter number: ")
+print("".join(sorted(n, reverse=True)))
+
+
+1. Reverse a Given List
+python
+Copy
+Edit
+aList = list(map(int, input("Enter elements separated by space: ").split()))
+aList.reverse()
+print("Reversed List:", aList)
+2. Even Numbers between 150–250, Filter by Divisible by 4
+python
+Copy
+Edit
+l1 = [i for i in range(150, 251) if i % 2 == 0]
+print("Length of l1:", len(l1))
+l2 = [i for i in l1 if i % 4 == 0]
+print("l2 (Divisible by 4):", l2)
+3. Square Roots of List Items
+python
+Copy
+Edit
+import math
+aList = list(map(int, input("Enter list of perfect squares: ").split()))
+roots = [int(math.sqrt(i)) for i in aList]
+print("Square roots:", roots)
+4. Print Combined Pairs from Two Lists
+python
+Copy
+Edit
+list1 = list(map(int, input("Enter list1 elements: ").split()))
+list2 = list(map(int, input("Enter list2 elements: ").split()))
+for i in list1:
+    for j in list2:
+        print(f"{i}{j}", end=",")
+5. Iterate Two Lists (One Reversed)
+python
+Copy
+Edit
+list1 = list(map(int, input("Enter list1: ").split()))
+list2 = list(map(int, input("Enter list2: ").split()))
+for a, b in zip(list1, reversed(list2)):
+    print(a, b)
+6. Remove Empty Strings
+python
+Copy
+Edit
+list1 = input("Enter words separated by space (leave some empty with ''): ").split()
+filtered = [x for x in list1 if x]
+print("After removing empty strings:", filtered)
+7. Add 7000 after 6000 in Nested List
+python
+Copy
+Edit
+list1 = [10, 20, [300, 400, [5000, 6000], 500], 30, 40]
+list1[2][2].append(7000)
+print(list1)
+8. Extend Nested List with ["h", "i", "j"]
+python
+Copy
+Edit
+list1 = ["a", "b", ["c", ["d", "e", ["f", "g"], "k"], "l"], "m", "n"]
+subList = input("Enter sublist elements separated by space: ").split()
+list1[2][1][2].extend(subList)
+print(list1)
+9. Replace First Occurrence of 20 with 200
+python
+Copy
+Edit
+list1 = list(map(int, input("Enter list: ").split()))
+if 20 in list1:
+    index = list1.index(20)
+    list1[index] = 200
+print("Modified List:", list1)
+10. Remove All Occurrences of 20
+python
+Copy
+Edit
+list1 = list(map(int, input("Enter list: ").split()))
+list1 = [x for x in list1 if x != 20]
+print("List after removal:", list1)
+11. Min and Max from Digits
+python
+Copy
+Edit
+num = input("Enter a number: ")
+digits = sorted(num)
+print("Min:", ''.join(digits))
+print("Max:", ''.join(digits[::-1]))
+12. All Odd Numbers from Permutations
+python
+Copy
+Edit
+from itertools import permutations
+
+num = input("Enter a number: ")
+num_list = list(num)
+odd_numbers = set()
+
+for i in range(1, len(num_list)+1):
+    for p in permutations(num_list, i):
+        n = int(''.join(p))
+        if n % 2 != 0:
+            odd_numbers.add(n)
+
+print("Odd numbers:", sorted(odd_numbers))
+
+
+Q3. Input Different Data Types from User
+python
+Copy
+Edit
+roll_no = int(input("Enter Roll Number (int): "))
+percentage = float(input("Enter Percentage Marks (float): "))
+complex_num = complex(input("Enter Any Complex Number (e.g., 3+4j): "))
+name = input("Enter Name of Student (string): ")
+
+print("\n--- Student Details ---")
+print("Roll No:", roll_no)
+print("Percentage:", percentage)
+print("Complex Number:", complex_num)
+print("Name:", name)
+Q4. Convert Integer to Binary, Hex, and Octal
+python
+Copy
+Edit
+num = int(input("Enter an integer: "))
+print("Binary:", bin(num))
+print("Hexadecimal:", hex(num))
+print("Octal:", oct(num))
+Q5. Convert Binary String to Integer
+python
+Copy
+Edit
+bin_str = input("Enter binary string starting with '0b': ")
+if bin_str.startswith("0b"):
+    print("Integer value:", int(bin_str, 2))
+else:
+    print("Invalid input. Must start with '0b'")
+Q6. Convert Octal String to Integer
+python
+Copy
+Edit
+oct_str = input("Enter octal string starting with '0o': ")
+if oct_str.startswith("0o"):
+    print("Integer value:", int(oct_str, 8))
+else:
+    print("Invalid input. Must start with '0o'")
+Q7. Convert Hexadecimal String to Integer
+python
+Copy
+Edit
+hex_str = input("Enter hexadecimal string starting with '0x': ")
+if hex_str.startswith("0x"):
+    print("Integer value:", int(hex_str, 16))
+else:
+    print("Invalid input. Must start with '0x'")
+Q8. Count 1's and 0's in Binary Representation
+python
+Copy
+Edit
+num = int(input("Enter an integer: "))
+binary = bin(num)[2:]  # Remove '0b'
+print("Binary representation:", binary)
+print("Number of 1's:", binary.count('1'))
+print("Number of 0's:", binary.count('0'))
+Q9. Menu Driven Conversion Program
+python
+Copy
+Edit
+print("Menu:")
+print("1. Binary")
+print("2. Octal")
+print("3. Hexadecimal")
+
+choice = input("Enter your choice (1/2/3): ")
+input_str = input("Enter the string with proper prefix (0b/0o/0x): ")
+
+if choice == '1' and input_str.startswith("0b"):
+    print("Converted to int:", int(input_str, 2))
+elif choice == '2' and input_str.startswith("0o"):
+    print("Converted to int:", int(input_str, 8))
+elif choice == '3' and input_str.startswith("0x"):
+    print("Converted to int:", int(input_str, 16))
+else:
+    print("Invalid choice or prefix")
+
+
+Q14. Convert Floating Point Number to Fraction (Numerator and Denominator)
+python
+Copy
+Edit
+from fractions import Fraction
+
+num = float(input("Enter a floating point number: "))
+frac = Fraction(num).limit_denominator()  # Convert float to fraction with limited denominator
+
+print(f"Fraction: {frac}")
+print(f"Numerator: {frac.numerator}")
+print(f"Denominator: {frac.denominator}")
+Q15. Simple Calculator with Multiple Operations
+python
+Copy
+Edit
+import math
+from math import gcd, log, sqrt
+
+def lcm(x, y):
+    return abs(x * y) // gcd(x, y)
+
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+print("""
+Choose operation:
+a. Add
+b. Subtract
+c. Divide
+d. Multiply
+e. Integer Division
+f. Mod Operation
+g. Check if both numbers are same
+h. Power Operation (num1^num2)
+i. Square root of both numbers
+j. Log of both numbers (natural log)
+k. GCD (only for integers)
+l. LCM (only for integers)
+""")
+
+choice = input("Enter choice (a-l): ").lower()
+
+if choice == 'a':
+    print("Result:", num1 + num2)
+elif choice == 'b':
+    print("Result:", num1 - num2)
+elif choice == 'c':
+    if num2 != 0:
+        print("Result:", num1 / num2)
+    else:
+        print("Error: Division by zero")
+elif choice == 'd':
+    print("Result:", num1 * num2)
+elif choice == 'e':
+    try:
+        print("Result:", int(num1) // int(num2))
+    except ZeroDivisionError:
+        print("Error: Division by zero")
+elif choice == 'f':
+    try:
+        print("Result:", int(num1) % int(num2))
+    except ZeroDivisionError:
+        print("Error: Division by zero")
+elif choice == 'g':
+    print("Numbers are the same:" if num1 == num2 else "Numbers are different")
+elif choice == 'h':
+    print("Result:", num1 ** num2)
+elif choice == 'i':
+    if num1 >= 0 and num2 >= 0:
+        print("Square root of first number:", sqrt(num1))
+        print("Square root of second number:", sqrt(num2))
+    else:
+        print("Error: Cannot take square root of negative number")
+elif choice == 'j':
+    if num1 > 0 and num2 > 0:
+        print("Log of first number:", log(num1))
+        print("Log of second number:", log(num2))
+    else:
+        print("Error: Logarithm undefined for non-positive numbers")
+elif choice == 'k':
+    print("GCD:", gcd(int(num1), int(num2)))
+elif choice == 'l':
+    print("LCM:", lcm(int(num1), int(num2)))
+else:
+    print("Invalid choice")
+Q16. Check if Integer is a Perfect Square (without using built-in functions)
+python
+Copy
+Edit
+num = int(input("Enter an integer: "))
+
+if num < 0:
+    print("Negative number cannot be a perfect square.")
+else:
+    i = 0
+    while i * i < num:
+        i += 1
+    if i * i == num:
+        print(f"{num} is a perfect square.")
+    else:
+        print(f"{num} is NOT a perfect square.")
+
+
+1. Middle Three Characters (odd length > 7)
+python
+Copy
+Edit
+s = input("Enter a string of odd length > 7: ")
+mid = len(s) // 2
+result = s[mid-1:mid+2]
+print("Middle three characters:", result)
+2. Append s2 in the middle of s1
+python
+Copy
+Edit
+s1 = input("Enter first string (s1): ")
+s2 = input("Enter second string (s2): ")
+mid = len(s1) // 2
+result = s1[:mid] + s2 + s1[mid:]
+print("Result:", result)
+3. New string from first, middle, last chars of s1 and s2
+python
+Copy
+Edit
+s1 = input("Enter first string (s1): ")
+s2 = input("Enter second string (s2): ")
+
+def get_chars(s):
+    mid = len(s) // 2
+    return s[0] + s[mid] + s[-1]
+
+result = get_chars(s1) + get_chars(s2)
+print("Result:", result)
+4. Arrange string so all lowercase letters come first
+python
+Copy
+Edit
+s = input("Enter a string with mixed case letters: ")
+lowercase = ''.join([c for c in s if c.islower()])
+uppercase = ''.join([c for c in s if c.isupper()])
+result = lowercase + uppercase
+print("Result:", result)
+5. Create third string: first char s1 + last char s2, second char s1 + second last char s2, etc.
+python
+Copy
+Edit
+s1 = input("Enter string s1: ")
+s2 = input("Enter string s2: ")
+
+result = []
+len1, len2 = len(s1), len(s2)
+min_len = min(len1, len2)
+
+for i in range(min_len):
+    result.append(s1[i])
+    result.append(s2[len2 - 1 - i])
+
+# Add leftover chars
+if len1 > len2:
+    result.extend(s1[min_len:])
+elif len2 > len1:
+    result.extend(s2[:len2 - min_len])
+
+print("Result:", ''.join(result))
+6. Find all occurrences of "USA" (case-insensitive) from right to left and print starting positions
+python
+Copy
+Edit
+s = input("Enter the string: ").lower()
+sub = "usa"
+positions = []
+
+start = len(s)
+while True:
+    pos = s.rfind(sub, 0, start)
+    if pos == -1:
+        break
+    positions.append(pos)
+    start = pos
+
+print("Positions from right to left:", positions)
+7. Find all overlapping occurrences of substring in a string
+python
+Copy
+Edit
+string = input("Enter the string: ")
+sub = input("Enter the substring: ")
+
+count = 0
+start = 0
+while True:
+    pos = string.find(sub, start)
+    if pos == -1:
+        break
+    count += 1
+    start = pos + 1  # allow overlapping
+
+print("Overlapping occurrences:", count)
+8. Given Emp_name:Emp_id check and print accordingly
+python
+Copy
+Edit
+def is_perfect_square(n):
+    if n < 0:
+        return False
+    i = 0
+    while i*i < n:
+        i += 1
+    return i*i == n
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+
+data = input("Enter Emp_name:Emp_id : ")
+name, emp_id_str = data.split(':')
+emp_id = int(emp_id_str)
+
+if is_perfect_square(emp_id):
+    vowels = ''.join([c for c in name if c.lower() in 'aeiou'])
+    print(vowels)
+elif is_prime(emp_id):
+    print(name[::2])  # alternate chars
+elif emp_id % 2 == 1:
+    print(sum(ord(c) for c in name))
+else:
+    print("None")
+9. Find all mobile numbers (10 digit numbers) in a paragraph
+python
+Copy
+Edit
+import re
+
+text = input("Enter paragraph: ")
+numbers = re.findall(r'\b\d{10}\b', text)
+print("Mobile numbers found:", ', '.join(numbers))
+10. Count spaces and special characters in string
+python
+Copy
+Edit
+s = input("Enter a string: ")
+spaces = s.count(' ')
+special_chars = sum(not c.isalnum() and c != ' ' for c in s)
+print("Spaces:", spaces)
+print("Special characters:", special_chars)
+11. Count words, sentences; count sentence types (. ? !)
+python
+Copy
+Edit
+import re
+
+paragraph = input("Enter paragraph: ")
+
+words = paragraph.split()
+print("Number of words:", len(words))
+
+sentences = re.findall(r'[^.?!]+[.?!]', paragraph)
+normal = sum(1 for s in sentences if s.endswith('.'))
+interrogative = sum(1 for s in sentences if s.endswith('?'))
+exclamatory = sum(1 for s in sentences if s.endswith('!'))
+
+print("Normal sentences:", normal)
+print("Interrogative sentences:", interrogative)
+print("Exclamatory sentences:", exclamatory)
+12. Wrap string to given width
+python
+Copy
+Edit
+s = input("Enter the string: ")
+w = int(input("Enter width: "))
+
+for i in range(0, len(s), w):
+    print(s[i:i+w])
+
+    
 </div>
 <!-- notification nav -->
 <div class="float-op" style="float: right;">
