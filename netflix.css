@@ -21,6 +21,555 @@ body{
  
 }
 
+1. Add a list of elements to a given set
+python
+Copy
+Edit
+sampleSet = {"Yellow", "Orange", "Black"}
+sampleList = ["Blue", "Green", "Red", "Yellow", "orange"]
+
+# Add all elements from sampleList to sampleSet
+sampleSet.update(sampleList)
+print(sampleSet)
+2. Display common elements from two sets
+python
+Copy
+Edit
+set1 = {10, 20, 30, 40, 50}
+set2 = {30, 40, 50, 60, 70}
+
+common = set1.intersection(set2)
+print("Common elements:", common)
+3. Generate a new set with all items from both sets removing common elements
+python
+Copy
+Edit
+set1 = {10, 20, 30, 40, 50, 25}
+set2 = {30, 40, 50, 60, 70, 100}
+
+# Symmetric difference removes common elements
+result = set1.symmetric_difference(set2)
+print(result)
+4. Set of elements in either A or B, but not both (Symmetric Difference)
+python
+Copy
+Edit
+set1 = {10, 20, 30, 40, 50}
+set2 = {30, 40, 50, 60, 70}
+
+result = set1.symmetric_difference(set2)
+print(result)
+5. Update set1 by adding items from set2 except common items
+python
+Copy
+Edit
+set1 = {10, 20, 30, 40, 50}
+set2 = {30, 40, 50, 60, 70}
+
+set1.update(set2.difference(set1))
+print(set1)
+6. Take a sentence and print all unique words
+python
+Copy
+Edit
+sentence = input("Enter a sentence: ")
+words = sentence.split()
+unique_words = set(words)
+print("Unique words:", unique_words)
+Tuple Assignments
+1. Reverse the following tuple
+python
+Copy
+Edit
+aTuple = (10, 20, 30, 40, 50, 60)
+print(aTuple[::-1])
+2. Display value 20 from tuple
+python
+Copy
+Edit
+aTuple = ("Orange", [10, 20, 30], (5, 15, 25))
+print(aTuple[1][1])  # Access list inside tuple and then 2nd element
+3. Unpack tuple into 4 variables
+python
+Copy
+Edit
+aTuple = (10, 20, 30, 40)
+a, b, c, d = aTuple
+print(a, b, c, d)
+4. Swap two tuples
+python
+Copy
+Edit
+tuple1 = (11, 22)
+tuple2 = (99, 88)
+
+tuple1, tuple2 = tuple2, tuple1
+print("tuple1 =", tuple1)
+print("tuple2 =", tuple2)
+5. Copy elements 44 and 55 into a new tuple
+python
+Copy
+Edit
+tuple1 = (11, 22, 33, 44, 55, 66)
+tuple2 = tuple1[3:5]
+print("tuple2:", tuple2)
+6. Modify first item (22) of list inside tuple to 200
+python
+Copy
+Edit
+tuple1 = (11, [22, 33], 44, 55)
+tuple1[1][0] = 200
+print("tuple1:", tuple1)
+7. Swap values of a and b using tuple, temp variable, and without temp or tuple
+python
+Copy
+Edit
+a = int(input("Enter value for a: "))
+b = int(input("Enter value for b: "))
+
+# Using tuple unpacking
+a, b = b, a
+print(f"After swapping using tuple: a={a}, b={b}")
+
+# Reset for next method
+a, b = b, a
+
+# Using temporary variable
+temp = a
+a = b
+b = temp
+print(f"After swapping using temp var: a={a}, b={b}")
+
+# Reset for next method
+a, b = b, a
+
+# Without temp variable or tuple
+a = a + b
+b = a - b
+a = a - b
+print(f"After swapping without temp or tuple: a={a}, b={b}")
+Dictionary Assignments
+1. ROT-13 encoder/decoder
+python
+Copy
+Edit
+rot13_dict = {
+    'a':'n', 'b':'o', 'c':'p', 'd':'q', 'e':'r', 'f':'s', 'g':'t', 'h':'u', 'i':'v', 'j':'w', 'k':'x', 'l':'y', 'm':'z',
+    'n':'a', 'o':'b', 'p':'c', 'q':'d', 'r':'e', 's':'f', 't':'g', 'u':'h', 'v':'i', 'w':'j', 'x':'k', 'y':'l', 'z':'m',
+    'A':'N', 'B':'O', 'C':'P', 'D':'Q', 'E':'R', 'F':'S', 'G':'T', 'H':'U', 'I':'V', 'J':'W', 'K':'X', 'L':'Y', 'M':'Z',
+    'N':'A', 'O':'B', 'P':'C', 'Q':'D', 'R':'E', 'S':'F', 'T':'G', 'U':'H', 'V':'I', 'W':'J', 'X':'K', 'Y':'L', 'Z':'M'
+}
+
+def rot13(text):
+    return ''.join(rot13_dict.get(c, c) for c in text)
+
+secret_message = "Pnrfne pvcure? V zhpu cersre Pnrfne fnynq!"
+print("Decoded message:", rot13(secret_message))
+2. Student favourite colours dictionary operations
+python
+Copy
+Edit
+people = {'Arham':'Blue','Lisa':'Yellow','Vinod':'Purple','Jenny':'Pink'}
+
+# a. Number of students
+print("Number of students:", len(people))
+
+# b. Change Lisa's favourite colour
+people['Lisa'] = 'Green'
+print("Lisa's new colour:", people['Lisa'])
+
+# c. Remove Jenny
+people.pop('Jenny', None)
+print("After removing Jenny:", people)
+3. Menu driven dictionary program for person and vehicle
+python
+Copy
+Edit
+people_vehicles = {}
+
+while True:
+    print("\nMenu:")
+    print("a. Add person and vehicle")
+    print("b. Delete person")
+    print("c. Modify vehicle")
+    print("d. Search vehicle by person")
+    print("e. Search people by vehicle")
+    print("f. Display all persons")
+    print("g. Display all vehicles")
+    print("h. Exit")
+
+    choice = input("Enter choice: ").lower()
+
+    if choice == 'a':
+        name = input("Enter person name: ")
+        vehicle = input("Enter vehicle name: ")
+        people_vehicles[name] = vehicle
+        print(f"Added {name}: {vehicle}")
+
+    elif choice == 'b':
+        name = input("Enter person name to delete: ")
+        if name in people_vehicles:
+            print(f"Person: {name}, Vehicle: {people_vehicles[name]}")
+            confirm = input("Confirm deletion (y/n): ")
+            if confirm.lower() == 'y':
+                del people_vehicles[name]
+                print(f"{name} deleted.")
+            else:
+                print("Deletion cancelled.")
+        else:
+            print("Person not found.")
+
+    elif choice == 'c':
+        name = input("Enter person name to modify vehicle: ")
+        if name in people_vehicles:
+            print(f"Current vehicle: {people_vehicles[name]}")
+            new_vehicle = input("Enter new vehicle: ")
+            people_vehicles[name] = new_vehicle
+            print("Vehicle updated.")
+        else:
+            print("Person not found.")
+
+    elif choice == 'd':
+        name = input("Enter person name to search vehicle: ")
+        if name in people_vehicles:
+            print(f"{name} has vehicle: {people_vehicles[name]}")
+        else:
+            print("Person not found.")
+
+    elif choice == 'e':
+        vehicle = input("Enter vehicle name to find owners: ")
+        owners = [name for name, v in people_vehicles.items() if v == vehicle]
+        if owners:
+            print(f"People with vehicle {vehicle}: {owners}")
+        else:
+            print("No owners found.")
+
+    elif choice == 'f':
+        print("All persons:", list(people_vehicles.keys()))
+
+    elif choice == 'g':
+        print("All vehicles:", list(set(people_vehicles.values())))
+
+    elif choice == 'h':
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid choice. Try again.")
+4. City and trees dictionary menu
+python
+Copy
+Edit
+city_trees = {}
+
+while True:
+    print("\nMenu:")
+    print("a. Add new city and trees")
+    print("b. Display all cities and trees")
+    print("c. Display trees of a city")
+    print("d. Display cities with a given tree")
+    print("e. Delete a city")
+    print("f. Modify tree list for a city")
+    print("g. Exit")
+
+    choice = input("Enter choice: ").lower()
+
+    if choice == 'a':
+        city = input("Enter city name: ")
+        trees = input("Enter trees (comma separated): ").split(',')
+        trees = [t.strip() for t in trees]
+        city_trees[city] = trees
+        print(f"Added {city} with trees {trees}")
+
+    elif choice == 'b':
+        for city, trees in city_trees.items():
+            print(f"{city}: {trees}")
+
+    elif choice == 'c':
+        city = input("Enter city name: ")
+        if city in city_trees:
+            print(f"Trees in {city}: {city_trees[city]}")
+        else:
+            print("City not found.")
+
+    elif choice == 'd':
+        tree = input("Enter tree name: ")
+        cities_with_tree = [city for city, trees in city_trees.items() if tree in trees]
+        if cities_with_tree:
+            print(f"Cities with tree {tree}: {cities_with_tree}")
+        else:
+            print("No cities found with that tree.")
+
+    elif choice == 'e':
+        city = input("Enter city to delete: ")
+        if city in city_trees:
+            confirm = input(f"Confirm delete {city}? (y/n): ")
+            if confirm.lower() == 'y':
+                del city_trees[city]
+                print(f"{city} deleted.")
+            else:
+                print("Deletion cancelled.")
+        else:
+            print("City not found.")
+
+    elif choice == 'f':
+        city = input("Enter city name: ")
+        trees = input("Enter trees to add (comma separated): ").split(',')
+        trees = [t.strip() for t in trees]
+        if city in city_trees:
+            city_trees[city].extend(trees)
+        else:
+            city_trees[city] = trees
+        print(f"Updated trees for")
+
+
+ 1. Print a right-angled triangle of stars
+markdown
+Copy
+Edit
+*
+**
+***
+****
+*****
+python
+Copy
+Edit
+n = 5
+for i in range(1, n+1):
+    print('*' * i)
+2. Print a right-angled triangle of numbers
+yaml
+Copy
+Edit
+1
+12
+123
+1234
+12345
+python
+Copy
+Edit
+n = 5
+for i in range(1, n+1):
+    for j in range(1, i+1):
+        print(j, end='')
+    print()
+3. Print an inverted right-angled triangle of stars
+markdown
+Copy
+Edit
+*****
+****
+***
+**
+*
+python
+Copy
+Edit
+n = 5
+for i in range(n, 0, -1):
+    print('*' * i)
+4. Print a pyramid of stars
+markdown
+Copy
+Edit
+    *
+   ***
+  *****
+ *******
+*********
+python
+Copy
+Edit
+n = 5
+for i in range(1, n+1):
+    print(' ' * (n - i) + '*' * (2*i - 1))
+5. Print a diamond pattern
+markdown
+Copy
+Edit
+    *
+   ***
+  *****
+ *******
+*********
+ *******
+  *****
+   ***
+    *
+python
+Copy
+Edit
+n = 5
+# Upper half
+for i in range(1, n+1):
+    print(' ' * (n - i) + '*' * (2*i - 1))
+# Lower half
+for i in range(n-1, 0, -1):
+    print(' ' * (n - i) + '*' * (2*i - 1))
+6. Print a square pattern of stars
+markdown
+Copy
+Edit
+*****
+*****
+*****
+*****
+*****
+python
+Copy
+Edit
+n = 5
+for i in range(n):
+    print('*' * n)
+7. Print a number pyramid
+markdown
+Copy
+Edit
+    1
+   121
+  12321
+ 1234321
+123454321
+python
+Copy
+Edit
+n = 5
+for i in range(1, n+1):
+    print(' ' * (n - i), end='')
+    for j in range(1, i+1):
+        print(j, end='')
+    for j in range(i-1, 0, -1):
+        print(j, end='')
+    print()
+8. Print Pascal's triangle (basic version)
+Copy
+Edit
+1
+1 1
+1 2 1
+1 3 3 1
+1 4 6 4 1
+python
+Copy
+Edit
+n = 5
+for i in range(n):
+    c = 1
+    for j in range(i+1):
+        print(c, end=' ')
+        c = c * (i - j) // (j + 1)
+    print()
+If you want, I can also provide these as functions with user input, or more complex pattern questions! Would you like that?
+
+
+
+
+
+
+You said:
+yes
+
+
+ChatGPT said:
+Got it! Here are the same pattern programs as functions with user input, so you (or an interviewer) can run them dynamically:
+
+1. Right-angled triangle of stars
+python
+Copy
+Edit
+def right_angled_triangle_stars():
+    n = int(input("Enter number of rows: "))
+    for i in range(1, n+1):
+        print('*' * i)
+
+right_angled_triangle_stars()
+2. Right-angled triangle of numbers
+python
+Copy
+Edit
+def right_angled_triangle_numbers():
+    n = int(input("Enter number of rows: "))
+    for i in range(1, n+1):
+        for j in range(1, i+1):
+            print(j, end='')
+        print()
+
+right_angled_triangle_numbers()
+3. Inverted right-angled triangle of stars
+python
+Copy
+Edit
+def inverted_right_angled_triangle():
+    n = int(input("Enter number of rows: "))
+    for i in range(n, 0, -1):
+        print('*' * i)
+
+inverted_right_angled_triangle()
+4. Pyramid of stars
+python
+Copy
+Edit
+def pyramid_stars():
+    n = int(input("Enter number of rows: "))
+    for i in range(1, n+1):
+        print(' ' * (n - i) + '*' * (2*i - 1))
+
+pyramid_stars()
+5. Diamond pattern
+python
+Copy
+Edit
+def diamond_pattern():
+    n = int(input("Enter number of rows: "))
+    for i in range(1, n+1):
+        print(' ' * (n - i) + '*' * (2*i - 1))
+    for i in range(n-1, 0, -1):
+        print(' ' * (n - i) + '*' * (2*i - 1))
+
+diamond_pattern()
+6. Square pattern of stars
+python
+Copy
+Edit
+def square_pattern():
+    n = int(input("Enter size of square: "))
+    for i in range(n):
+        print('*' * n)
+
+square_pattern()
+7. Number pyramid
+python
+Copy
+Edit
+def number_pyramid():
+    n = int(input("Enter number of rows: "))
+    for i in range(1, n+1):
+        print(' ' * (n - i), end='')
+        for j in range(1, i+1):
+            print(j, end='')
+        for j in range(i-1, 0, -1):
+            print(j, end='')
+        print()
+
+number_pyramid()
+8. Pascal's Triangle
+python
+Copy
+Edit
+def pascals_triangle():
+    n = int(input("Enter number of rows: "))
+    for i in range(n):
+        c = 1
+        for j in range(i+1):
+            print(c, end=' ')
+            c = c * (i - j) // (j + 1)
+        print()
+
+pascals_triangle() 
+
+
 /* nav headiing */
 .fixed-div{
 background-color: #111111;
